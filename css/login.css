@@ -1,0 +1,38 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: rgb(153, 97, 173);
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid #9f76e693;
+}
+
+/* Set a style for the submit button */
+.btn {
+    color: rgb(13, 13, 13);
+    padding: 15px 20px;
+    width: 100%;
+  }
+  
+  .btn:hover {
+    opacity: 1;
+  }
