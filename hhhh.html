@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background-color: rgba(189, 232, 236, 0.152);
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 300px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #034F84;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .sidenav a {
+      padding: 10px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #ffffff;
+      display: block;
+    }
+
+    @media screen and (max-height: 400px) {
+      .sidenav {
+        padding-top: 10px;
+      }
+      .sidenav a {
+        font-size: 14px;
+      }
+    }
+
+    .dropdown-menu.small {
+      width: 210px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(231, 231, 232, 0.901);
+      border-radius: 4px; /* Rounded corners */
+    }
+
+    .dropdown-menu.small .dropdown-item {
+      padding: 6px 12px;
+      font-size: 14px;
+      color: #000;
+    }
+
+    /* Remove hover effect on "Select your date" and "Select your time" dropdowns */
+    .dropdown-menu.small .dropdown-item:not(.package-toggle):hover {
+      background-color: transparent;
+      color: #000;
+      transition: background-color 0.3s; /* Add a smooth transition effect */
+    }
+
+    .dropdown-menu.small img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    .dropdown-toggle::after {
+      display: none;
+    }
+
+    .dropdown-toggle:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    /* Custom styles to resize the buttons */
+    .btn-secondary {
+      font-size: 18px;
+      padding: 0.6rem 1rem;
+      display: block;
+      margin-bottom: 45px;
+      width: 100%; /* Set a fixed width for the buttons */
+      text-align: left; /* Align the button text to the left */
+      background-color: #034F84; /* Update the background color */
+      color: #fff; /* Set text color to white */
+      border: none; /* Remove the button border */
+      border-radius: 4px; /* Rounded corners */
+    }
+    .btn-secondary:hover {
+  background-color: #0461a5; /* Update the background color on hover */
+  transition: background-color 0.3s;
+}
+
+
+    /* Custom styles for input fields */
+    .dropdown-menu.small input[type="date"],
+    .dropdown-menu.small input[type="time"] {
+      width: 70%;
+      padding: 10px 10px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+      border-radius: 500px;
+      border: -5px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    /* Custom styles for the "Select your date" and "Select your time" dropdowns */
+    .btn-secondary.dropright {
+      position: relative; /* Set the button to relative positioning */
+    }
+
+    .dropdown-menu.dropright {
+      top: 0; /* Align the dropdown to the top of the button */
+      left: 100%; /* Position the dropdown to the right of the button */
+      margin-top: -6px; /* Add some negative margin to adjust the alignment */
+    }
+
+    /* Optional: Add an icon inside the dropdown buttons */
+    .btn-secondary.dropright i {
+      margin-right: 5px;
+    }
+
+    /* Custom styles for the "Select your Payment" dropdown */
+    .btn-secondary.payment-dropdown {
+      border-radius: 4px;
+    }
+
+    .dropdown-menu.payment-dropdown {
+      width: 300px;
+      box-shadow: 0 2px 5px rgba(231, 231, 232, 0.901);
+      border-radius: 4px; /* Rounded corners */
+      padding: 15px;
+    }
+
+    .dropdown-menu.payment-dropdown h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #000;
+    }
+
+    .dropdown-menu.payment-dropdown label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .dropdown-menu.payment-dropdown input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .dropdown-menu.payment-dropdown .icon-container {
+      margin-top: 15px;
+    }
+
+    .dropdown-menu.payment-dropdown .icon-container i {
+      font-size: 30px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .dropdown-menu.payment-dropdown .dropdown {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .dropdown-menu.payment-dropdown .dropdown .btn {
+      width: 100%;
+      border-radius: 4px;
+    }
+
+
+    
+    /* Modal styles */
+    .modal-dialog {
+      max-width: 100px;
+    }
+
+    .modal-body {
+      text-align: center;
+    }
+
+
+
+
+
+   
+/* Modal styles */
+.modal-dialog {
+  max-width: 500px; /* Update the max-width to allow more space for the content */
+}
+
+/* Custom styles for the receipt box */
+.box {
+  border: 2px solid #034F84; /* Add a border around the receipt */
+  padding: 20px; /* Add padding to create some space between the receipt content and the border */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effect */
+}
+
+
+
+
+
+
+ 
+    .modal-footer {
+      text-align: center;
+    }
+
+    .modal-footer img {
+      max-width: 150px;
+      max-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidenav">
+    <div class="btn-group dropright">
+      <button type="button" class="btn btn-secondary dropdown-toggle package-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-gift"></i> Select your Package
+      </button>
+      <div class="dropdown-menu small">
+        <a class="dropdown-item package-toggle" href="#">
+          <img src="img/22915.jpg" alt="Gold"><span>Gold</span>
+        </a>
+        <a class="dropdown-item package-toggle" href="#">
+          <img src="img/aqua-park-cairo-6-1 (1).jpg" alt="Silver"><span>Silver</span>
+        </a>
+        <a class="dropdown-item package-toggle" href="#">
+          <img src="img/images.jfif" alt="Platinum"><span>Platinum</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="btn-group dropright">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="far fa-calendar-alt"></i> Select your date
+      </button>
+      <div class="dropdown-menu small">
+        <a class="dropdown-item">
+          <label for="select-your-date">Your date:</label>
+          <input type="date" id="select-your-date" name="select-your-date">
+        </a>
+      </div>
+    </div>
+
+    <div class="btn-group dropright">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="far fa-clock"></i> Select your time
+      </button>
+      <div class="dropdown-menu small">
+        <a class="dropdown-item">
+          <label for="select-your-time">Your time:</label>
+          <input type="time" id="select-your-time" name="select-your-time">
+        </a>
+      </div>
+    </div>
+ 
+    <div class="btn-group dropright">
+      <button type="button" class="btn btn-secondary dropdown-toggle payment-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-credit-card"></i> Select your Payment
+      </button>
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+          <div class="dropdown-menu payment-dropdown">
+            <div class="row">
+              <div class="col-12">
+                <h3> payment</h3>
+                <label for="fname">Full Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="john@example.com">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <h3>Payment</h3>
+                <label for="fname">Accepted Cards</label>
+                <div class="icon-container">
+                  <i class="fa fa-cc-visa" style="color:navy;"></i>
+                  <i class="fa fa-cc-amex" style="color:blue;"></i>
+                  <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                  <i class="fa fa-cc-discover" style="color:orange;"></i>
+                </div>
+                <label for="cname">Name on Card</label>
+                <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                <label for="ccnum">Credit card number</label>
+                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+              </div>
+            </div>
+        <div class="row">
+          <div class="col-12 dropdown">
+            <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#myModal">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thank you!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+          <div class="modal-body">
+            Please Print your QR CODE.
+          </div>
+          <div class="modal-footer">
+            <p>
+              <title>Box with Text Example</title>
+              <h3>Nice Work!</h3>
+              <center>
+                <h2>Receipt</h2>
+                <div class="box">
+                  <p>
+                    Child's Name: Atyat<br>
+                    Email: Atyat_Brainiacs@gmail.com<br>
+                    Medical Information: Partial Paralysis<br>
+                    Your Package: Silver<br>
+                    Your Selected Date: 18/3/2023<br>
+                    Your Selected Time: 10:00<br>
+                    Preferable Way of Payment: Visa
+                  </p>
+                  <img src="img\frame.png" width="150" height="200"/>
+                </div>
+              </center>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
