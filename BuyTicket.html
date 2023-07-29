@@ -12,8 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <meta charset="utf-8">
-
-
+  
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -80,34 +79,35 @@
   }
 
   .sidenav {
-    height: 648px; /* Adjust the height as desired */
-    width: 300px;
-    position: relative;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #034F84;
-    overflow-x: hidden;
-    padding-top: 20px;
-    margin-top :-19px;
-  }
+  height: 640px; /* Adjust the height as desired */
+  width: 300px;
+  position: fixed; /* Change position to fixed */
+  z-index: 1;
+  bottom: 10px; /* Move the sidebar to the bottom */
+  left: 0;
+  background-color: #034F84;
+  overflow-x: hidden;
+  padding-top: 20px;
+  margin-top: -19px;
+}
 
+.sidenav a {
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #ffffff;
+  display: block;
+}
+
+@media screen and (max-height: 400px) {
+  .sidenav {
+    padding-top: 10px;
+  }
   .sidenav a {
-    padding: 10px 16px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #ffffff;
-    display: block;
+    font-size: 14px;
   }
+}
 
-  @media screen and (max-height: 400px) {
-    .sidenav {
-      padding-top: 10px;
-    }
-    .sidenav a {
-      font-size: 14px;
-    }
-  }
 
 
   .dropdown-menu.small {
@@ -277,27 +277,38 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
  /* Carousel styles */
 
 
- 
 
-  .carousel-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 400px; /* Set the fixed height for the carousel container */
-      }
+.carousel-wrapper {
+  max-width: 50%; /* Adjust the width of the carousel */
+  margin-left: 30px; /* Adjust the space between carousel and sidenav */
+}
 
-
-      .carousel-inner .item img {
-    width: 50%; /* Set the width of the image to 50% */
-    height: 100%; /* Set the height of the image to 100% to cover the fixed carousel container height */
-    object-fit: cover; /* Maintain the aspect ratio of the image and cover the entire carousel slide */
-  }
-.carousel {
-  margin-left: -2000px; /* hide carousel content initially */
-  transition: margin-left 0.5s;
+.carousel-top {
+  position: absolute;
+  top: 50px; /* Adjust the distance from the top as needed */
+  left: 500px; /* Adjust the distance from the sidebar as needed */
+  width: 50%; /* Adjust the width of the carousel */
+  z-index: 1; /* Ensure the carousel is above the sidebar */
 }
 
 
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); /* Adjust the height to account for the position change */
+}
+
+.carousel-inner .item img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel {
+  margin-left: -2000px;
+  transition: margin-left 0.5s;
+}
 
 .carousel.active {
   margin-left: 0;
@@ -307,7 +318,7 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
 .carousel-indicators {
   display: flex;
   justify-content: center;
-  margin-top: 200px; /* Adjust this value to control the space between carousel and indicators */
+  margin-top: 20px; /* Adjust this value to control the space between carousel and indicators */
 }
 
 .carousel-wrapper {
@@ -316,9 +327,9 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
 }
 
 .carousel-inner .item img {
-  width: 100%; /* Set the width of the image to 100% */
+  width: 100%;
   height: 400px; /* Adjust the height as needed to make the image bigger */
-  object-fit: cover; /* Maintain the aspect ratio of the image and cover the entire carousel slide */
+  object-fit: cover;
 }
 
   .modal-footer {
@@ -335,7 +346,7 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2.5">
+    <div class="col-md-2">
 
 <div class="sidenav">
   <div class="btn-group dropright">
@@ -461,9 +472,10 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
 </div>
 
 
-<div class="col-md-9">
-  <div class="carousel-container">
-      <div id="myCarousel" class="carousel slide active" data-ride="carousel">
+
+<div class="carousel-top">
+  <div class="carousel-container d-flex justify-content-center align-items-center">
+    <div id="myCarousel" class="carousel slide active" data-ride="carousel"
     <div id="myCarousel" class="carousel slide active" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -496,7 +508,7 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
     </a>
     </div>
   </div>
-
+</div>
 </div>
   </div>
 </div>  
@@ -521,7 +533,7 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
 
 <footer style="font-size: 12px;">
 	<div style="color: rebeccapurple;">
-	  <i class="fa fa-copyright">
+	  <i >
 		&copy; 2023 by Heliopolis Brainiacs
 	  </i>
 	</div>
@@ -548,4 +560,3 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
