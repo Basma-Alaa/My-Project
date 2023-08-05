@@ -248,10 +248,7 @@ transition: background-color 0.3s;
 
 
   
-  /* Modal styles */
-  .modal-dialog {
-    max-width: 100px;
-  }
+
 
   .modal-body {
     text-align: center;
@@ -261,17 +258,22 @@ transition: background-color 0.3s;
 
 
 
- 
+
 /* Modal styles */
 .modal-dialog {
-max-width: 500px; /* Update the max-width to allow more space for the content */
+    max-width: 500px; /* Update the max-width to allow more space for the content */
+    z-index: 10001; /* Set a higher z-index than the carousel's z-index */
 }
+
+
+ 
+
 
 /* Custom styles for the receipt box */
 .box {
 border: 2px solid #034F84; /* Add a border around the receipt */
 padding: 20px; /* Add padding to create some space between the receipt content and the border */
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effect */
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0); /* Add a box shadow for a raised effect */
 }
 
  /* Carousel styles */
@@ -300,8 +302,8 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
 }
 
 .carousel-inner .item img {
-  width: 100%;
-  height: 920px;
+  width: 50%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -341,7 +343,6 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
     max-height: 200px;
   }
 </style>
-</head>
 </div>
 
 <div class="container-fluid">
@@ -430,52 +431,14 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
       </div>
     </div>
   </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Thank you!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Please Print your QR CODE.
-        </div>
-        <div class="modal-footer">
-          <p>
-            <title>Box with Text Example</title>
-            <h3>Nice Work!</h3>
-            <center>
-              <h2>Receipt</h2>
-              <div class="box">
-                <p>
-                  Child's Name: Atyat<br>
-                  Email: Atyat_Brainiacs@gmail.com<br>
-                  Medical Information: Partial Paralysis<br>
-                  Your Package: Silver<br>
-                  Your Selected Date: 18/3/2023<br>
-                  Your Selected Time: 10:00<br>
-                  Preferable Way of Payment: Visa
-                </p>
-                <img src="img\frame.png" width="150" height="200"/>
-              </div>
-            </center>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 </div>
-
-
+</div>
+</div>
 
 <div class="carousel-top">
   <div class="carousel-container d-flex justify-content-center align-items-center">
-    <div id="myCarousel" class="carousel slide active" data-ride="carousel"
+    <div id="myCarousel" class="carousel slide active" data-ride="carousel">
     <div id="myCarousel" class="carousel slide active" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -487,16 +450,13 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="img/maquett1.jpeg" alt="First slide">
+          <img src="img/maqeutte.jpeg" alt="First slide">
         </div>
         <div class="item">
           <img src="img/maqutte2.jpeg" alt="Second slide">
         </div>
         <div class="item">
-          <img src="img/WhatsApp Image 2023-08-04 at 9.50.42 AM (1).jpeg" alt="Third slide">
-        </div>
-        <div class="item">
-          <img src="img\3atyat.jpeg" alt="fourth slide">
+          <img src="img/mauett1.jpeg" alt="Third slide">
         </div>
       </div>
   
@@ -513,12 +473,43 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
   </div>
 </div>
 </div>
-  </div>
-</div>  
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thank you!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Please Print your QR CODE.
+      </div>
+      <div class="modal-footer">
+        <p>
+          <title>Box with Text Example</title>
+          <h3>Nice Work!</h3>
+          <center>
+            <h2>Receipt</h2>
+            <div class="box">
+              <p>
+                Child's Name: Atyat<br>
+                Email: Atyat_Brainiacs@gmail.com<br>
+                Medical Information: Partial Paralysis<br>
+                Your Package: Silver<br>
+                Your Selected Date: 18/3/2023<br>
+                Your Selected Time: 10:00<br>
+                Preferable Way of Payment: Visa
+              </p>
+              <img src="img\frame.png" width="150" height="200"/>
+            </div>
+          </center>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
-
-
   <script>
     // show the carousel after the page is loaded
     window.addEventListener('load', function() {
@@ -530,9 +521,7 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
 <br>
 <br>
 <br>
-</div>
 
-  
 
 <footer style="font-size: 12px;">
 	<div style="color: rebeccapurple;">
@@ -548,17 +537,8 @@ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a box shadow for a raised effec
 	  </a>
 	</div>
   </footer>
-
-
 </body>
 </html>
-
-
-
-
-
-
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
